@@ -7,37 +7,37 @@ const educationData = [
     degree: "Master in IT",
     institution: "University of the West of Scotland",
     location: "Paisley",
-    year: "2022 - Present",
-    description: "Focusing on advanced IT concepts, software development, and system analysis.",
+    year: "2025 - Present",
+    description: "Focusing on advanced IT concepts, Project Management,Development, and system analysis.",
     logo: "/uni.svg",
-    notes: "Specialized in information systems management and IT infrastructure planning."
+    notes: "Specialized in information systems management and IT infrastructure planning and Project Management."
   },
   {
     degree: "Bachelor in Computer Science and IT",
-    institution: "Tribhuvan University",
+    institution: "Asian College of Higher studies (Tribhuvan University)",
     location: "Nepal",
-    year: "2014 - 2018",
+    year: "2015 - 2022",
     description: "Studied computer programming, database management, software engineering, and IT infrastructure.",
     logo: "/uni.svg",
     notes: "Graduated with honors, focusing on networking and system administration."
   },
   {
-    degree: "Higher Secondary School (Science)",
-    institution: "Tulsipur",
+    degree: " Higher Secondary School (Science)",
+    institution: "Gorkha Higher Secondary School (10+2)",
     location: "Dang, Nepal",
-    year: "2012 - 2014",
-    description: "Completed higher secondary education with a focus on science subjects including mathematics, physics, and computer science.",
+    year: "2013 - 2015",
+    description: "Completed higher secondary education with a focus on science subjects including mathematics, physics and Biology.",
     logo: "/uni.svg",
-    notes: "Achieved excellence in mathematics and computer science courses."
+    notes: "Achieved excellence."
   },
   {
-    degree: "Professional Certification",
-    institution: "Various Institutions",
-    location: "Online",
-    year: "2018 - 2022",
-    description: "Completed various professional certifications in IT networking, system administration, and customer service.",
+    degree: "School level Certification",
+    institution: "Tulsi Boarding Higher Secondary School",
+    location: "Tulsipur Dang",
+    year: "2000 - 2013",
+    description: "Completed secondary Level of Education.",
     logo: "/uni.svg",
-    notes: "CCNA, CompTIA A+, ITIL Foundation, and Microsoft Certified Professional."
+    notes: "Achieved excellence."
   },
 ];
 
