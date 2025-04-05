@@ -16,7 +16,7 @@ const educationData = [
     degree: "Bachelor in Computer Science and IT",
     institution: "Asian College of Higher studies (Tribhuvan University)",
     location: "Nepal",
-    year: "2015 - 2022",
+    year: "2022",
     description: "Studied computer programming, database management, software engineering, and IT infrastructure.",
     logo: "/uni.svg",
     notes: "Graduated with honors, focusing on networking and system administration."
@@ -25,7 +25,7 @@ const educationData = [
     degree: " Higher Secondary School (Science)",
     institution: "Gorkha Higher Secondary School (10+2)",
     location: "Dang, Nepal",
-    year: "2013 - 2015",
+    year: "2015",
     description: "Completed higher secondary education with a focus on science subjects including mathematics, physics and Biology.",
     logo: "/uni.svg",
     notes: "Achieved excellence."
@@ -34,7 +34,7 @@ const educationData = [
     degree: "School level Certification",
     institution: "Tulsi Boarding Higher Secondary School",
     location: "Tulsipur Dang",
-    year: "2000 - 2013",
+    year: "2013",
     description: "Completed secondary Level of Education.",
     logo: "/uni.svg",
     notes: "Achieved excellence."
