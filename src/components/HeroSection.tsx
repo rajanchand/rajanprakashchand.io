@@ -50,7 +50,7 @@ export default function HeroSection() {
           </div>
           <div className="order-1 lg:order-2 w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-pulse hover:border-primary transition-all duration-300">
             <img
-              src="/placeholder.svg"
+              src="/rajanchand.JPG"
               alt="Rajan Prakash Chand"
               className="w-full h-full object-cover"
             />
