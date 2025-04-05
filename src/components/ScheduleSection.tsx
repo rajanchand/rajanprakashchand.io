@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Mail } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -99,15 +98,16 @@ export default function ScheduleSection() {
                     <h3 className="font-medium text-lg">Project Collaboration</h3>
                     <p className="text-muted-foreground">Explore potential partnership opportunities or discuss project ideas.</p>
                   </div>
-
-                   <div className="border-l-4 border-primary pl-4 py-2 hover:bg-primary/5 transition-colors rounded">
+                  
+                  <div className="border-l-4 border-primary pl-4 py-2 hover:bg-primary/5 transition-colors rounded">
                     <h3 className="font-medium text-lg">Interview or Media Request</h3>
                     <p className="text-muted-foreground">Schedule an interview or discuss speaking engagements.</p>
                   </div>
+                </div>
                 
                 <div className="mt-6 bg-secondary/30 p-4 rounded-lg">
                   <p className="text-sm">
-                    Please provide a brief description of the meeting purpose when scheduling through Calendly,email me or you can contact me. This helps me prepare better for our discussion.
+                    Please provide a brief description of the meeting purpose when scheduling through Calendly or email. This helps me prepare better for our discussion.
                   </p>
                 </div>
               </CardContent>
