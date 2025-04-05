@@ -113,7 +113,7 @@ export default function Header() {
         
         <div className="flex items-center justify-between">
           <a href="#home" className="text-xl font-poppins font-bold text-primary">
-            Rajan Chand
+            Rajan Prakash Chand
           </a>
 
           {/* Desktop Navigation */}
@@ -161,7 +161,7 @@ export default function Header() {
               aria-label="Schedule meeting"
               asChild
             >
-              <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/rajanchand48/1" target="_blank" rel="noopener noreferrer">
                 <Calendar className="h-5 w-5" />
               </a>
             </Button>
