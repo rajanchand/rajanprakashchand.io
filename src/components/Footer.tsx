@@ -1,5 +1,5 @@
 
-import { Github, Instagram, Linkedin, Facebook, Heart } from "lucide-react";
+import { Github, Instagram, Linkedin, Facebook, Heart, Link } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,6 +9,7 @@ export default function Footer() {
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Link, href: "https://linktr.ee", label: "Linktree" },
   ];
   
   const quickLinks = [
@@ -16,7 +17,7 @@ export default function Footer() {
     { name: "About", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Education", href: "#education" },
-    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -58,6 +59,16 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://linktr.ee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center"
+                >
+                  <Link className="h-4 w-4 mr-2" /> Connect with me
+                </a>
+              </li>
             </ul>
           </div>
           
