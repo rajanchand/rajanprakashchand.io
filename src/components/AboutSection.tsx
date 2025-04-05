@@ -19,7 +19,7 @@ export default function AboutSection() {
             
             <div className="mt-6 space-y-4">
               <Button asChild variant="default" size="lg" className="w-full">
-                <a href="/Rajan Prakash Chand resume.pdf" download="Rajan-Chand-Resume.pdf">
+                <a href="https://drive.google.com/drive/u/0/home" download="Rajan-Chand-Resume.pdf">
                   <Download className="mr-2 h-4 w-4" /> Download Resume
                 </a>
               </Button>
