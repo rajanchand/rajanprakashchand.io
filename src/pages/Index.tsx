@@ -7,16 +7,34 @@ import SkillsSection from "@/components/SkillsSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Add a small delay to ensure smooth animation after initial render
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       <Header />
       <main>
         <HeroSection />
-        <ExperienceSection />
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/5 pointer-events-none z-10"></div>
+          <ExperienceSection />
+        </div>
         <SkillsSection />
-        <EducationSection />
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/5 pointer-events-none z-10"></div>
+          <EducationSection />
+        </div>
         <AboutSection />
         <ContactSection />
       </main>

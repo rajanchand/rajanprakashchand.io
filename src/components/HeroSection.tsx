@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Github, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Github, Instagram, Linkedin, Facebook, Link } from "lucide-react";
 
 export default function HeroSection() {
   const socialLinks = [
@@ -8,6 +8,7 @@ export default function HeroSection() {
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Link, href: "https://linktr.ee", label: "Linktree" },
   ];
 
   return (
@@ -22,10 +23,10 @@ export default function HeroSection() {
               A passionate IT professional with expertise in technical supervision and customer support. Currently pursuing Master's in IT at the University of the West of Scotland, Paisley.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="rounded-full">
+              <Button asChild size="lg" className="rounded-full animate-bounce">
                 <a href="#contact">Get in Touch</a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Button asChild variant="outline" size="lg" className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                 <a href="#about">About Me</a>
               </Button>
             </div>
@@ -38,7 +39,7 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-icon"
+                    className="social-icon hover:scale-125 transition-transform duration-300"
                     aria-label={social.label}
                   >
                     <social.icon className="h-5 w-5" />
@@ -47,7 +48,7 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-          <div className="order-1 lg:order-2 w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-fade-in">
+          <div className="order-1 lg:order-2 w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-pulse hover:border-primary transition-all duration-300">
             <img
               src="/placeholder.svg"
               alt="Rajan Prakash Chand"
