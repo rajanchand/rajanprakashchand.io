@@ -139,7 +139,7 @@ export default function Header() {
               aria-label="Contact me"
               asChild
             >
-              <a href="rajanchand48@gmail.com">
+              <a href="#contact">
                 <Mail className="h-5 w-5" />
               </a>
             </Button>
