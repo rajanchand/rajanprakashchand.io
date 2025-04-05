@@ -16,9 +16,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           <div className="order-2 lg:order-1 max-w-2xl animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Hi, I'm <span className="text-primary">Rajan Prakash Chand</span>
-            </h1>
+            </h2>
             <p className="text-xl text-muted-foreground mb-6">
               With five years in the ISP sector, I bring strong expertise in networking, customer support, and technical supervision. I spent three years at WorldLink Communications Ltd. as a Technical Supervisor, overseeing technicians and ensuring network stability. Then, at Dish Media Network Ltd., I led customer support teams to resolve network issues and enhance service delivery. Currently pursuing a Master's in Information Technology at the University of the West of Scotland,
             </p>
