@@ -9,7 +9,7 @@ const educationData = [
     location: "Paisley",
     year: "2025 - Present",
     description: "Focusing on advanced IT concepts, software development, and system analysis.",
-    logo: "/placeholder.svg",
+    logo: "/uni.svg",
     notes: "Specialized in information systems management and IT infrastructure planning."
   },
   {
@@ -18,7 +18,7 @@ const educationData = [
     location: "Nepal",
     year: "2016 - 2022",
     description: "Studied computer programming, database management,Networking, software engineering, and IT infrastructure.",
-    logo: "/placeholder.svg",
+    logo: "/uni.svg",
     notes: "Graduated with honors, focusing on networking and system administration."
   },
   {
@@ -27,7 +27,7 @@ const educationData = [
     location: "Dang, Nepal",
     year: "2013 - 2015",
     description: "Completed higher secondary education with a focus on science subjects including mathematics and physics.",
-    logo: "/placeholder.svg",
+    logo: "/uni.svg",
     notes: "Achieved excellence"
   },
   {
@@ -36,7 +36,7 @@ const educationData = [
     location: "Dang,Nepal",
     year: "2010 - 2013",
     description: "Completed  Secondary education",
-    logo: "/placeholder.svg",
+    logo: "/uni.svg",
     notes: "Achieved excellence"
   },
 ];
