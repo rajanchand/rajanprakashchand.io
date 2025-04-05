@@ -101,8 +101,8 @@ export default function ScheduleSection() {
                   </div>
                   
                   <div className="border-l-4 border-primary pl-4 py-2 hover:bg-primary/5 transition-colors rounded">
-                    <h3 className="font-medium text-lg">Interview or Media Request</h3>
-                    <p className="text-muted-foreground">Schedule an interview or discuss speaking engagements.</p>
+                    <h3 className="font-medium text-lg">For Hiring </h3>
+                    <p className="text-muted-foreground">Schedule an interview.</p>
                   </div>
                 </div>
                 
