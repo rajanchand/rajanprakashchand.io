@@ -20,9 +20,7 @@ export default function HeroSection() {
               Hi, I'm <span className="text-primary">Rajan Prakash Chand</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
-             With 3 years of experience in technical roles, I’ve built strong expertise in networking, software development, and system troubleshooting. I also have 2 years of experience in customer support, where I provided technical assistance and resolved complex issues, enhancing both my communication skills and customer service approach.
-
-I’m passionate about combining technical knowledge with a customer-focused mindset to drive seamless, innovative solutions.
+              A passionate IT professional with expertise in technical supervision and customer support. Currently pursuing Master's in IT at the University of the West of Scotland, Paisley.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="rounded-full animate-bounce">
@@ -52,7 +50,7 @@ I’m passionate about combining technical knowledge with a customer-focused min
           </div>
           <div className="order-1 lg:order-2 w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-pulse hover:border-primary transition-all duration-300">
             <img
-              src="/rajanchand.JPG"
+              src="/placeholder.svg"
               alt="Rajan Prakash Chand"
               className="w-full h-full object-cover"
             />

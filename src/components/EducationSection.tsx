@@ -7,37 +7,37 @@ const educationData = [
     degree: "Master in IT",
     institution: "University of the West of Scotland",
     location: "Paisley",
-    year: "2025 - Present",
+    year: "2022 - Present",
     description: "Focusing on advanced IT concepts, software development, and system analysis.",
-    logo: "/uni.svg",
+    logo: "/placeholder.svg",
     notes: "Specialized in information systems management and IT infrastructure planning."
   },
   {
     degree: "Bachelor in Computer Science and IT",
-    institution: "Asian College of Higher Studies (Tribhuvan University)",
+    institution: "Tribhuvan University",
     location: "Nepal",
-    year: "2016 - 2022",
-    description: "Studied computer programming, database management,Networking, software engineering, and IT infrastructure.",
-    logo: "/uni.svg",
+    year: "2014 - 2018",
+    description: "Studied computer programming, database management, software engineering, and IT infrastructure.",
+    logo: "/placeholder.svg",
     notes: "Graduated with honors, focusing on networking and system administration."
   },
   {
-    degree: "Gorkha Higher Secondary School (Science)",
+    degree: "Higher Secondary School (Science)",
     institution: "Tulsipur",
     location: "Dang, Nepal",
-    year: "2013 - 2015",
-    description: "Completed higher secondary education with a focus on science subjects including mathematics and physics.",
-    logo: "/uni.svg",
-    notes: "Achieved excellence"
+    year: "2012 - 2014",
+    description: "Completed higher secondary education with a focus on science subjects including mathematics, physics, and computer science.",
+    logo: "/placeholder.svg",
+    notes: "Achieved excellence in mathematics and computer science courses."
   },
   {
-    degree: "School level Certification(S.L.C)",
-    institution: "Tulsi Baording higher secondary Schoool",
-    location: "Dang,Nepal",
-    year: "2010 - 2013",
-    description: "Completed  Secondary education",
-    logo: "/uni.svg",
-    notes: "Achieved excellence"
+    degree: "Professional Certification",
+    institution: "Various Institutions",
+    location: "Online",
+    year: "2018 - 2022",
+    description: "Completed various professional certifications in IT networking, system administration, and customer service.",
+    logo: "/placeholder.svg",
+    notes: "CCNA, CompTIA A+, ITIL Foundation, and Microsoft Certified Professional."
   },
 ];
 

@@ -1,4 +1,5 @@
-import { Github, Instagram, Linkedin, Facebook, Heart, Link as LinkIcon, Users } from "lucide-react";
+
+import { Github, Instagram, Linkedin, Facebook, Heart, Link } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export default function Footer() {
@@ -11,8 +12,7 @@ export default function Footer() {
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: LinkIcon, href: "https://linktr.ee", label: "Linktree" },
-    { icon: Users, href: "https://www.linkedin.com/groups/", label: "Professional Memberships" },
+    { icon: Link, href: "https://linktr.ee", label: "Linktree" },
   ];
   
   const quickLinks = [
@@ -95,7 +95,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center hover:translate-x-1 transform"
                 >
-                  <LinkIcon className="h-4 w-4 mr-2" /> Connect with me
+                  <Link className="h-4 w-4 mr-2" /> Connect with me
                 </a>
               </li>
             </ul>

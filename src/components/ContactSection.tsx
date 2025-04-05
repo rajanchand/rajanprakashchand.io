@@ -66,7 +66,7 @@ export default function ContactSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Enter your name"
+                      placeholder="John Doe"
                       required
                     />
                   </div>
@@ -80,7 +80,7 @@ export default function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="Enter your Email address"
+                      placeholder="john@example.com"
                       required
                     />
                   </div>
