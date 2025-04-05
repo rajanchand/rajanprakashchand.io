@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Download, Calendar, Mail } from "lucide-react";
 
@@ -26,7 +25,7 @@ export default function AboutSection() {
               </Button>
               
               <Button asChild variant="outline" size="lg" className="w-full">
-                <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">
+                <a href="#schedule">
                   <Calendar className="mr-2 h-4 w-4" /> Schedule a Meeting
                 </a>
               </Button>
@@ -45,12 +44,10 @@ export default function AboutSection() {
               </p>
               <Button asChild variant="default" size="sm" className="w-full">
                 <a 
-                  href="https://calendly.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="#schedule" 
                   className="flex items-center justify-center"
                 >
-                  <Calendar className="mr-2 h-4 w-4" /> Open My Calendar
+                  <Calendar className="mr-2 h-4 w-4" /> View Scheduling Options
                 </a>
               </Button>
             </div>
