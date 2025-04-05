@@ -11,7 +11,7 @@ export default function AboutSection() {
           <div className="lg:w-1/3 animate-slide-in-left">
             <div className="rounded-lg overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="/rajanchand.JPG"
                 alt="Rajan Prakash Chand"
                 className="w-full object-cover"
               />
