@@ -1,0 +1,14 @@
+
+[build]
+  publish = "dist"
+  command = "bun run build"
+
+# Disable the CommandBar plugin
+[[plugins]]
+  package = "@commandbar/netlify-plugin-commandbar"
+  [plugins.inputs]
+    disable = true
+
+# Keep other plugins
+[[plugins]]
+  package = "netlify-purge-cloudflare-on-deploy"
