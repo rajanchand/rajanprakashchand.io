@@ -3,11 +3,8 @@
   publish = "dist"
   command = "bun run build"
 
-# Disable the CommandBar plugin
-[[plugins]]
-  package = "@commandbar/netlify-plugin-commandbar"
-  [plugins.inputs]
-    disable = true
+# Instead of trying to disable the CommandBar plugin, let's completely remove it
+# and only keep the Cloudflare plugin
 
 # Keep other plugins
 [[plugins]]
