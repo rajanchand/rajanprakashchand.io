@@ -23,6 +23,6 @@ export default defineConfig(({ mode }) => ({
   // Add environment variables to notify Netlify not to use the CommandBar plugin
   define: {
     'process.env.DISABLE_COMMANDBAR': JSON.stringify('true'),
-    'process.env.COMMANDBAR_ORG_ID': JSON.stringify('dummy-id'), // This should prevent the error about missing organization ID
+    'process.env.COMMANDBAR_ORG_ID': JSON.stringify('Netlify Purge Cache Token'), // This should prevent the error about missing organization ID
   },
 }));
