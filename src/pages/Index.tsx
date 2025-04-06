@@ -8,6 +8,7 @@ import AboutSection from "@/components/AboutSection";
 import ScheduleSection from "@/components/ScheduleSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -41,6 +42,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

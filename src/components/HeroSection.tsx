@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Github, Instagram, Linkedin, Facebook, Link } from "lucide-react";
+import { Github, Instagram, Linkedin, Facebook, Link, Phone } from "lucide-react";
 
 export default function HeroSection() {
   const socialLinks = [
@@ -25,6 +25,9 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="rounded-full animate-bounce">
                 <a href="#contact">Get in Touch</a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                <a href="tel:+447570731478"><Phone className="mr-2" /> Call Me</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                 <a href="#about">About Me</a>
