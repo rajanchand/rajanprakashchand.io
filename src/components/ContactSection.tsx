@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,26 +21,53 @@ export default function ContactSection() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
+    try {
+      // This is where we send the data to Google Sheets
+      // Replace YOUR_GOOGLE_SHEET_WEBHOOK_URL with your actual Google Sheets webhook URL
+      const scriptURL = 'YOUR_GOOGLE_SHEET_WEBHOOK_URL';
+      
+      const formDataToSend = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
       });
       
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        body: formDataToSend
+      });
+      
+      if (response.ok) {
+        // Clear the form after successful submission
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+        
+        toast({
+          title: "Message Sent",
+          description: "Thank you for your message. It has been saved to our database!",
+          duration: 5000,
+        });
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
-        title: "Message Sent",
-        description: "Thank you for your message. I'll get back to you soon!",
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
         duration: 5000,
       });
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
