@@ -28,7 +28,7 @@ export default function ContactSection() {
     try {
       // This is where we send the data to Google Sheets
       // Replace YOUR_GOOGLE_SHEET_WEBHOOK_URL with your actual Google Sheets webhook URL
-      const scriptURL = 'YOUR_GOOGLE_SHEET_WEBHOOK_URL';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwxtLkA26bdnV6eMgh27bwSgT4_zWkkkCo4oDgguQNT7-PZJLtWs_UAxyN51-NAHzAB/exec';
       
       const formDataToSend = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
