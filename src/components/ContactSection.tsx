@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { sendContactFormToGoogleSheets } from "@/utils/googleSheetsHelper";
+import { sendContactFormToGoogleSheets, enrichFormData } from "@/utils/googleSheetsHelper";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -27,7 +28,12 @@ export default function ContactSection() {
     setIsSubmitting(true);
     
     try {
-      const response = await sendContactFormToGoogleSheets(formData);
+      // Enrich form data with system information
+      const enrichedFormData = await enrichFormData(formData);
+      console.log("Enriched form data:", enrichedFormData);
+      
+      // Send to Google Sheets
+      const response = await sendContactFormToGoogleSheets(enrichedFormData);
       
       if (response.ok) {
         // Clear the form after successful submission
