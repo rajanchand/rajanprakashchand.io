@@ -121,7 +121,7 @@ export default function Footer() {
         
         <div className="border-t border-border mt-10 pt-6 text-center text-muted-foreground">
           <p className="flex items-center justify-center group">
-            © {currentYear} Rajan Prakash Chand. All rights reserved. Made with <Heart className="h-4 w-4 text-red-500 mx-1 group-hover:animate-pulse" /> in Scotland
+            © {currentYear} Rajan Prakash Chand. All rights reserved. Made by <Heart className="h-4 w-4 text-red-500 mx-1 group-hover:animate-pulse" /> Rajan Thakuri
           </p>
         </div>
       </div>
