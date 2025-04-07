@@ -36,7 +36,7 @@ export default function ContactInfo() {
         title="Location"
         content={
           <p className="text-muted-foreground">
-            Paisley, Scotland, United Kingdom
+            Glasgow, Scotland, United Kingdom
           </p>
         }
       />
