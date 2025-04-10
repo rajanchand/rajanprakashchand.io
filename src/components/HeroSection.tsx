@@ -4,10 +4,10 @@ import { Github, Instagram, Linkedin, Facebook, Link, Phone } from "lucide-react
 
 export default function HeroSection() {
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Github, href: "https://github.com/rajanchand", label: "GitHub" },
+    { icon: Instagram, href: "https://www.instagram.com/rajan.chand08/", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/rajanprakashchand/", label: "LinkedIn" },
+    { icon: Facebook, href: "https://www.facebook.com/rajanprakash.chandthakuri/", label: "Facebook" },
     { icon: Link, href: "https://linktr.ee", label: "Linktree" },
   ];
 
