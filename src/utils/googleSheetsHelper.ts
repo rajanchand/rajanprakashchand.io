@@ -1,8 +1,10 @@
+
 interface ContactFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
+  address?: string;
   ipAddress?: string;
   deviceInfo?: string;
   osInfo?: string;

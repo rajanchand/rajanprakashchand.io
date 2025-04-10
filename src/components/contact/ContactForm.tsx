@@ -22,6 +22,7 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
+  address: z.string().min(5, { message: "Address must be at least 5 characters." }),
   subject: z.string().min(3, { message: "Subject must be at least 3 characters." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." })
 });
@@ -38,6 +39,7 @@ export default function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
+      address: "",
       subject: "",
       message: ""
     }
@@ -49,10 +51,10 @@ export default function ContactForm() {
     
     try {
       // Enrich form data with system information
-      // Ensure all required fields are present from the validated formData
       const enrichedFormData = await enrichFormData({
         name: formData.name,
         email: formData.email,
+        address: formData.address,
         subject: formData.subject,
         message: formData.message
       });
@@ -119,6 +121,20 @@ export default function ContactForm() {
             )}
           />
         </div>
+        
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Your Address</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your address" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         
         <FormField
           control={form.control}

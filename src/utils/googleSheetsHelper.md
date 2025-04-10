@@ -9,6 +9,7 @@ To connect your contact form to Google Sheets, follow these steps:
 2. Add column headers that match your form fields: 
    - "name"
    - "email" 
+   - "address"
    - "subject"
    - "message"
    - "ipAddress"
@@ -36,6 +37,7 @@ const doPost = (request) => {
     sheet.appendRow([
       formData.name,
       formData.email,
+      formData.address,
       formData.subject,
       formData.message,
       formData.ipAddress,
