@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { Mail, MessageCircle, Menu, X, Calendar, Clock } from "lucide-react";
+import { Mail, MessageCircle, Menu, X, Calendar, Clock, MapPin, CloudSun } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { getCurrentLocationAndWeather } from "@/utils/googleSheetsHelper";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -20,6 +21,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [ipAddress, setIpAddress] = useState("");
+  const [locationInfo, setLocationInfo] = useState("Detecting location...");
+  const [weatherInfo, setWeatherInfo] = useState("Loading weather...");
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -40,7 +43,23 @@ export default function Header() {
       }
     };
 
+    // Fetch location and weather
+    const fetchLocationAndWeather = async () => {
+      try {
+        const { location, weather } = await getCurrentLocationAndWeather();
+        // For display, extract just the coordinates without the prefix
+        const displayLocation = location.replace('Latitude: ', '').replace('Longitude: ', '');
+        setLocationInfo(displayLocation);
+        setWeatherInfo(weather);
+      } catch (error) {
+        console.error('Failed to fetch location and weather:', error);
+        setLocationInfo('Location unavailable');
+        setWeatherInfo('Weather unavailable');
+      }
+    };
+
     fetchIpAddress();
+    fetchLocationAndWeather();
 
     const handleScroll = () => {
       // Update header background
@@ -102,11 +121,19 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto flex flex-col">
-        <div className="flex items-center justify-between text-xs text-muted-foreground py-1">
+        <div className="flex items-center justify-between text-xs text-muted-foreground py-1 flex-wrap gap-y-1">
           <div className="flex items-center gap-2">
             <Clock className="h-3 w-3" />
             <span>{formattedDate} | {formattedTime}</span>
           </div>
+          
+          <div className="flex items-center gap-2">
+            <MapPin className="h-3 w-3" />
+            <span>{locationInfo}</span>
+            <CloudSun className="h-3 w-3 ml-2" />
+            <span>{weatherInfo}</span>
+          </div>
+          
           <div>IP: {ipAddress}</div>
         </div>
         

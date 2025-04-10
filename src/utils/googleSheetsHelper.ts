@@ -9,6 +9,8 @@ interface ContactFormData {
   osInfo?: string;
   browserInfo?: string;
   location?: string;
+  weather?: string;
+  timestamp?: string;
 }
 
 /**
@@ -97,14 +99,49 @@ const getLocationInfo = (): Promise<string> => {
 };
 
 /**
+ * Gets current weather information based on coordinates
+ * @param coords Latitude and longitude
+ * @returns Promise with weather information
+ */
+const getWeatherInfo = async (location: string): Promise<string> => {
+  try {
+    // Extract coordinates if available
+    const coordsMatch = location.match(/Latitude: ([\d.-]+), Longitude: ([\d.-]+)/);
+    
+    if (!coordsMatch) {
+      return 'Weather information unavailable';
+    }
+    
+    const latitude = coordsMatch[1];
+    const longitude = coordsMatch[2];
+    
+    // Use OpenWeatherMap free API
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=886705b4c1182eb1c69f28eb8c520e20`
+    );
+    
+    if (!response.ok) {
+      throw new Error('Weather API error');
+    }
+    
+    const data = await response.json();
+    return `${data.weather[0].main}, ${Math.round(data.main.temp)}°C`;
+  } catch (error) {
+    console.error('Error fetching weather:', error);
+    return 'Weather information unavailable';
+  }
+};
+
+/**
  * Enriches form data with system information
  * @param formData The original form data
  * @returns Promise with the enriched form data
  */
 export const enrichFormData = async (formData: ContactFormData): Promise<ContactFormData> => {
-  const [ipAddress, location] = await Promise.all([
+  const location = await getLocationInfo();
+  const [ipAddress, weather] = await Promise.all([
     getIpAddress(),
-    getLocationInfo(),
+    getWeatherInfo(location),
   ]);
   
   const { deviceInfo, osInfo, browserInfo } = getDeviceInfo();
@@ -113,10 +150,28 @@ export const enrichFormData = async (formData: ContactFormData): Promise<Contact
     ...formData,
     ipAddress,
     location,
+    weather,
     deviceInfo,
     osInfo,
-    browserInfo
+    browserInfo,
+    timestamp: new Date().toISOString()
   };
+};
+
+/**
+ * Fetches current weather based on geolocation
+ * @returns Promise with current location and weather
+ */
+export const getCurrentLocationAndWeather = async (): Promise<{location: string, weather: string}> => {
+  try {
+    const location = await getLocationInfo();
+    const weather = await getWeatherInfo(location);
+    
+    return { location, weather };
+  } catch (error) {
+    console.error('Error getting location and weather:', error);
+    return { location: 'Unknown location', weather: 'Weather unavailable' };
+  }
 };
 
 /**
@@ -131,7 +186,7 @@ export const sendContactFormToGoogleSheets = async (formData: ContactFormData): 
   // Create FormData object for sending
   const formDataToSend = new FormData();
   Object.entries(formData).forEach(([key, value]) => {
-    formDataToSend.append(key, value);
+    formDataToSend.append(key, value || 'Not available');
   });
   
   // Send data to Google Sheets

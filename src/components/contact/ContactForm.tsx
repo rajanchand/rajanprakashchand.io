@@ -26,14 +26,14 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." })
 });
 
-export type ContactFormData = z.infer<typeof formSchema>;
+type ContactFormValues = z.infer<typeof formSchema>;
 
 export default function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Initialize React Hook Form
-  const form = useForm<ContactFormData>({
+  const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -44,7 +44,7 @@ export default function ContactForm() {
   });
 
   // Form submission handler
-  const onSubmit = async (formData: ContactFormData) => {
+  const onSubmit = async (formData: ContactFormValues) => {
     setIsSubmitting(true);
     
     try {

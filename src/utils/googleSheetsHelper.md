@@ -6,7 +6,18 @@ To connect your contact form to Google Sheets, follow these steps:
 ## 1. Set up a Google Sheet
 
 1. Create a new Google Sheet
-2. Add column headers that match your form fields: "name", "email", "subject", "message", and "timestamp"
+2. Add column headers that match your form fields: 
+   - "name"
+   - "email" 
+   - "subject"
+   - "message"
+   - "ipAddress"
+   - "deviceInfo"
+   - "osInfo"
+   - "browserInfo"
+   - "location"
+   - "weather"
+   - "timestamp"
 
 ## 2. Set up Google Apps Script
 
@@ -21,16 +32,19 @@ const doPost = (request) => {
     // Get form data
     const formData = request.parameter;
     
-    // Add timestamp
-    const timestamp = new Date();
-    
     // Append data to sheet
     sheet.appendRow([
       formData.name,
       formData.email,
       formData.subject,
       formData.message,
-      timestamp
+      formData.ipAddress,
+      formData.deviceInfo,
+      formData.osInfo,
+      formData.browserInfo,
+      formData.location,
+      formData.weather,
+      formData.timestamp || new Date().toISOString()
     ]);
     
     return ContentService.createTextOutput(JSON.stringify({ result: 'success' }))
@@ -50,10 +64,19 @@ const doPost = (request) => {
 
 ## 3. Update your contact form
 
-Replace 'YOUR_GOOGLE_SHEET_WEBHOOK_URL' in the ContactSection.tsx file with the Web app URL you copied from the Google Apps Script deployment.
+Replace 'YOUR_GOOGLE_SHEET_WEBHOOK_URL' in the googleSheetsHelper.ts file with the Web app URL you copied from the Google Apps Script deployment.
 
 ## Important Notes
 
 - Make sure your column headers in Google Sheets exactly match the field names sent from your form
 - The Google Apps Script deployment must be set to "Anyone" can access for the form to work properly
 - If you make changes to the script, you need to create a new deployment for the changes to take effect
+- The form automatically collects the following information:
+  - IP Address
+  - Device information (mobile/desktop/tablet)
+  - Operating system information
+  - Browser information
+  - Geographic location (if permission granted)
+  - Current weather (based on location)
+  - Timestamp
+
