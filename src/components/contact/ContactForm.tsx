@@ -49,7 +49,14 @@ export default function ContactForm() {
     
     try {
       // Enrich form data with system information
-      const enrichedFormData = await enrichFormData(formData);
+      // Ensure all required fields are present from the validated formData
+      const enrichedFormData = await enrichFormData({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      });
+      
       console.log("Enriched form data:", enrichedFormData);
       
       // Send to Google Sheets
