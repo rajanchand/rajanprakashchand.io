@@ -7,18 +7,39 @@ import { ContactFormData } from '../types/contactFormTypes';
  * @returns Promise with the fetch response
  */
 export const sendContactFormToGoogleSheets = async (formData: ContactFormData): Promise<Response> => {
-  // Google Apps Script web app URL
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwxtLkA26bdnV6eMgh27bwSgT4_zWkkkCo4oDgguQNT7-PZJLtWs_UAxyN51-NAHzAB/exec';
+  // Google Apps Script web app URL - updated to your spreadsheet
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxMqG-Xv13l-xAhQtcYZoTWQpn3EfNIZJz-CmKSw_rw80Qpez1qomEv8Z-ykAqr96Lc/exec';
+  
+  // Log the data being sent to help with debugging
+  console.log('Sending form data to Google Sheets:', formData);
   
   // Create FormData object for sending
   const formDataToSend = new FormData();
+  
+  // Make sure all expected fields are included in the form data
   Object.entries(formData).forEach(([key, value]) => {
-    formDataToSend.append(key, value || 'Not available');
+    // Convert any objects or null values to strings
+    if (value === null || value === undefined) {
+      formDataToSend.append(key, 'Not available');
+    } else if (typeof value === 'object') {
+      formDataToSend.append(key, JSON.stringify(value));
+    } else {
+      formDataToSend.append(key, String(value));
+    }
   });
   
   // Send data to Google Sheets
-  return fetch(scriptURL, {
-    method: 'POST',
-    body: formDataToSend
-  });
+  try {
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      body: formDataToSend,
+      mode: 'no-cors', // This helps with CORS issues
+    });
+    
+    console.log('Google Sheets response:', response);
+    return response;
+  } catch (error) {
+    console.error('Error sending data to Google Sheets:', error);
+    throw error;
+  }
 };

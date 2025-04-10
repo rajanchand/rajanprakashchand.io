@@ -4,7 +4,7 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
-  address?: string;
+  address: string; // Changed from optional to required
   ipAddress?: string;
   deviceInfo?: string;
   osInfo?: string;
