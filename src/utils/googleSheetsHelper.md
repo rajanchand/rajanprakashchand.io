@@ -66,7 +66,7 @@ const doPost = (request) => {
 
 ## 3. Update your contact form
 
-Replace 'YOUR_GOOGLE_SHEET_WEBHOOK_URL' in the googleSheetsHelper.ts file with the Web app URL you copied from the Google Apps Script deployment.
+Replace the script URL in the `googleSheetsService.ts` file with the Web app URL you copied from the Google Apps Script deployment.
 
 ## Important Notes
 
@@ -81,4 +81,3 @@ Replace 'YOUR_GOOGLE_SHEET_WEBHOOK_URL' in the googleSheetsHelper.ts file with t
   - Geographic location (if permission granted)
   - Current weather (based on location)
   - Timestamp
-
