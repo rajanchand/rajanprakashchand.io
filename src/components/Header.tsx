@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -26,12 +25,10 @@ export default function Header() {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Update date and time every second
     const timer = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
     
-    // Fetch IP address
     const fetchIpAddress = async () => {
       try {
         const response = await fetch('https://api.ipify.org?format=json');
@@ -43,13 +40,10 @@ export default function Header() {
       }
     };
 
-    // Fetch location and weather
     const fetchLocationAndWeather = async () => {
       try {
         const { location, weather } = await getCurrentLocationAndWeather();
-        // For display, extract just the coordinates without the prefix
-        const displayLocation = location.replace('Latitude: ', '').replace('Longitude: ', '');
-        setLocationInfo(displayLocation);
+        setLocationInfo(location);
         setWeatherInfo(weather);
       } catch (error) {
         console.error('Failed to fetch location and weather:', error);
@@ -62,10 +56,8 @@ export default function Header() {
     fetchLocationAndWeather();
 
     const handleScroll = () => {
-      // Update header background
       setIsScrolled(window.scrollY > 0);
       
-      // Update active section based on scroll position
       const sections = document.querySelectorAll("section[id]");
       
       sections.forEach((section) => {
@@ -142,7 +134,6 @@ export default function Header() {
             Rajan Prakash Chand
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <a
@@ -193,7 +184,6 @@ export default function Header() {
             </Button>
             <ThemeToggle />
 
-            {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
@@ -207,7 +197,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobile && (
         <div
           className={`fixed inset-0 bg-background z-40 transition-transform duration-300 ease-in-out transform ${

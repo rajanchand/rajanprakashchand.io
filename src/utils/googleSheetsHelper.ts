@@ -1,4 +1,3 @@
-
 interface ContactFormData {
   name: string;
   email: string;
@@ -81,7 +80,7 @@ const getDeviceInfo = (): { deviceInfo: string; osInfo: string; browserInfo: str
 const getLocationInfo = (): Promise<string> => {
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
-      resolve('Geolocation not supported');
+      resolve('Location unavailable');
       return;
     }
     
@@ -91,11 +90,62 @@ const getLocationInfo = (): Promise<string> => {
         resolve(`Latitude: ${latitude}, Longitude: ${longitude}`);
       },
       () => {
-        resolve('Location permission denied');
+        resolve('Location unavailable');
       },
       { timeout: 5000 }
     );
   });
+};
+
+/**
+ * Gets location name based on coordinates using reverse geocoding
+ * @param location The location string with coordinates
+ * @returns Promise with the location name
+ */
+const getLocationName = async (location: string): Promise<string> => {
+  try {
+    // Extract coordinates if available
+    const coordsMatch = location.match(/Latitude: ([\d.-]+), Longitude: ([\d.-]+)/);
+    
+    if (!coordsMatch) {
+      return 'Location unavailable';
+    }
+    
+    const latitude = coordsMatch[1];
+    const longitude = coordsMatch[2];
+    
+    // Use a free geocoding API
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+    );
+    
+    if (!response.ok) {
+      throw new Error('Geocoding API error');
+    }
+    
+    const data = await response.json();
+    
+    // Format the location based on available data
+    let locationName = 'Unknown location';
+    
+    if (data.address) {
+      const city = data.address.city || data.address.town || data.address.village || data.address.hamlet;
+      const country = data.address.country;
+      
+      if (city && country) {
+        locationName = `${city}, ${country}`;
+      } else if (city) {
+        locationName = city;
+      } else if (country) {
+        locationName = country;
+      }
+    }
+    
+    return locationName;
+  } catch (error) {
+    console.error('Error getting location name:', error);
+    return 'Location unavailable';
+  }
 };
 
 /**
@@ -109,15 +159,15 @@ const getWeatherInfo = async (location: string): Promise<string> => {
     const coordsMatch = location.match(/Latitude: ([\d.-]+), Longitude: ([\d.-]+)/);
     
     if (!coordsMatch) {
-      return 'Weather information unavailable';
+      return 'Weather unavailable';
     }
     
     const latitude = coordsMatch[1];
     const longitude = coordsMatch[2];
     
-    // Use OpenWeatherMap free API
+    // Use OpenMeteo free weather API instead of OpenWeatherMap (which reached request limit)
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=886705b4c1182eb1c69f28eb8c520e20`
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&timezone=auto`
     );
     
     if (!response.ok) {
@@ -125,10 +175,35 @@ const getWeatherInfo = async (location: string): Promise<string> => {
     }
     
     const data = await response.json();
-    return `${data.weather[0].main}, ${Math.round(data.main.temp)}°C`;
+
+    // Get the temperature and format it to show in Celsius
+    const temperature = data.current?.temperature_2m;
+    const weatherUnit = data.current_units?.temperature_2m || '°C';
+    
+    // Map the weather code to a condition
+    const weatherCode = data.current?.weather_code;
+    let weatherCondition = 'Unknown';
+    
+    // Weather code mapping based on WMO codes
+    if (weatherCode !== undefined) {
+      if (weatherCode === 0) weatherCondition = 'Clear sky';
+      else if (weatherCode === 1) weatherCondition = 'Mainly clear';
+      else if (weatherCode === 2) weatherCondition = 'Partly cloudy';
+      else if (weatherCode === 3) weatherCondition = 'Overcast';
+      else if ([45, 48].includes(weatherCode)) weatherCondition = 'Foggy';
+      else if ([51, 53, 55, 56, 57].includes(weatherCode)) weatherCondition = 'Drizzle';
+      else if ([61, 63, 65, 66, 67].includes(weatherCode)) weatherCondition = 'Rain';
+      else if ([71, 73, 75, 77].includes(weatherCode)) weatherCondition = 'Snow';
+      else if ([80, 81, 82].includes(weatherCode)) weatherCondition = 'Rain showers';
+      else if ([85, 86].includes(weatherCode)) weatherCondition = 'Snow showers';
+      else if ([95, 96, 99].includes(weatherCode)) weatherCondition = 'Thunderstorm';
+      else weatherCondition = 'Unknown';
+    }
+    
+    return `${weatherCondition}, ${temperature}${weatherUnit}`;
   } catch (error) {
     console.error('Error fetching weather:', error);
-    return 'Weather information unavailable';
+    return 'Weather unavailable';
   }
 };
 
@@ -139,8 +214,9 @@ const getWeatherInfo = async (location: string): Promise<string> => {
  */
 export const enrichFormData = async (formData: ContactFormData): Promise<ContactFormData> => {
   const location = await getLocationInfo();
-  const [ipAddress, weather] = await Promise.all([
+  const [ipAddress, locationName, weather] = await Promise.all([
     getIpAddress(),
+    getLocationName(location),
     getWeatherInfo(location),
   ]);
   
@@ -149,7 +225,7 @@ export const enrichFormData = async (formData: ContactFormData): Promise<Contact
   return {
     ...formData,
     ipAddress,
-    location,
+    location: locationName,
     weather,
     deviceInfo,
     osInfo,
@@ -165,12 +241,15 @@ export const enrichFormData = async (formData: ContactFormData): Promise<Contact
 export const getCurrentLocationAndWeather = async (): Promise<{location: string, weather: string}> => {
   try {
     const location = await getLocationInfo();
-    const weather = await getWeatherInfo(location);
+    const [locationName, weather] = await Promise.all([
+      getLocationName(location),
+      getWeatherInfo(location),
+    ]);
     
-    return { location, weather };
+    return { location: locationName, weather };
   } catch (error) {
     console.error('Error getting location and weather:', error);
-    return { location: 'Unknown location', weather: 'Weather unavailable' };
+    return { location: 'Location unavailable', weather: 'Weather unavailable' };
   }
 };
 
