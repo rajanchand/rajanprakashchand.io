@@ -9,6 +9,7 @@ import ScheduleSection from "@/components/ScheduleSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import BackgroundAnimation from "@/components/BackgroundAnimation";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -25,6 +26,7 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <BackgroundAnimation />
       <Header />
       <main>
         <HeroSection />
