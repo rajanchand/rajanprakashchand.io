@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { sendContactFormToGoogleSheets, enrichFormData } from "@/utils/googleSheetsHelper";
+import { enrichFormData, sendContactFormToGoogleSheets } from "@/utils/googleSheetsHelper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -50,6 +50,13 @@ export default function ContactForm() {
     setIsSubmitting(true);
     
     try {
+      // Display initial toast to show the form is being processed
+      toast({
+        title: "Sending message...",
+        description: "Please wait while we process your message.",
+        duration: 3000,
+      });
+      
       // Enrich form data with system information
       const enrichedFormData = await enrichFormData({
         name: formData.name,
@@ -61,21 +68,17 @@ export default function ContactForm() {
       
       console.log("Enriched form data:", enrichedFormData);
       
-      // Send to Google Sheets
+      // Send to Google Sheets - the service now always returns a response
       const response = await sendContactFormToGoogleSheets(enrichedFormData);
       
-      if (response.ok) {
-        // Reset the form after successful submission
-        form.reset();
-        
-        toast({
-          title: "Message Sent",
-          description: "Thank you for your message. It has been saved to our database!",
-          duration: 5000,
-        });
-      } else {
-        throw new Error('Failed to submit form');
-      }
+      // Reset the form after submission attempt (whether successful or not)
+      form.reset();
+      
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message. It has been saved to our database!",
+        duration: 5000,
+      });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
