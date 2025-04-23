@@ -104,7 +104,7 @@ export default function Footer() {
           <div className="transition-all duration-500 delay-200 transform hover:scale-105">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li className="hover:text-primary transition-colors duration-300">Paisley, Scotland, UK</li>
+              <li className="hover:text-primary transition-colors duration-300">Glasgow,Scotland (UK)</li>
               <li>
                 <a href="mailto:rajanchand48@gmail.com" className="hover:text-primary transition-colors duration-300 hover:underline">
                   rajanchand48@gmail.com
